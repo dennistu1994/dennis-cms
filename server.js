@@ -11,7 +11,7 @@ var server = http.createServer(function(req, res) {
   //log(JSON.stringify(util.inspect(req)), "logs/req_" + Date.now() + ".json");
   var url = req.url;
   var req_url = req.url;
-  //if(!req_url.startsWith("/index")){
+  console.log(req.url);
   if(req_url.indexOf("/index") !== 0){
     req_url = "/index" + req_url;
   }
@@ -28,7 +28,9 @@ var server = http.createServer(function(req, res) {
   }
 });
 
-server.listen(process.env.PORT || 8080);
+server.listen(process.env.PORT || 8000, function(){
+  console.log('listening port',process.env.PORT || 8000);
+});
 
 function serve_file(url, res){
   var extname = path.extname(url);

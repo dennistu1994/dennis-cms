@@ -59,7 +59,7 @@ function render() {
 }
 
 $(function() {
-  require(['js/settings/resolutions'], function(Resolutions) {
+  require(['../js/settings/resolutions'], function(Resolutions) {
     init(Resolutions["1080p"]);
     prepare_scene(Resolutions["1080p"]);
     render();
