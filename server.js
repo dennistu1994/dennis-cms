@@ -11,6 +11,7 @@ var Index = Init.init_modules();
 var server = http.createServer(function(req, res) {
   //log(JSON.stringify(util.inspect(req)), "logs/req_" + Date.now() + ".json");
   var url = req.url;
+  console.log("requesting: "+url);
   var req_url = req.url;
   if(!(req_url.startsWith("/index"))){
     req_url = "/index" + req_url;
@@ -29,7 +30,7 @@ var server = http.createServer(function(req, res) {
 
 });
 server.listen(process.env.PORT || 8080);
-console.log("server listening port " + (process.env.OPENSHIFT_NODEJS_PORT || 8250));
+console.log("server listening port " + (process.env.PORT || 8080));
 
 function serve_file(url, res){
   var extname = path.extname(url);
