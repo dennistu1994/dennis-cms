@@ -12,7 +12,7 @@ var server = http.createServer(function(req, res) {
   //log(JSON.stringify(util.inspect(req)), "logs/req_" + Date.now() + ".json");
   var url = req.url;
   var req_url = req.url;
-  if(!req_url.startsWith("/index")){
+  if(!(req_url.startsWith("/index"))){
     req_url = "/index" + req_url;
   }
   try {
