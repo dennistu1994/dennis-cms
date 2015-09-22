@@ -5,14 +5,13 @@ var util = require('util');
 var fs = require('fs');
 
 var Init = require('./init');
-console.log(Init);
 var Index = Init.init_modules();
 
 var server = http.createServer(function(req, res) {
   //log(JSON.stringify(util.inspect(req)), "logs/req_" + Date.now() + ".json");
   var url = req.url;
   var req_url = req.url;
-  console.log("requesting: "+req_url+" a "+typeof req_url);
+  console.log("requesting: "+req_url+" a "+typeof req_url, req_url.startsWith("/index"));
   //if(!req_url.startsWith("/index")){
   if(true){
     req_url = "/index" + req_url;
@@ -66,7 +65,6 @@ function serve_file(url, res){
       res.status(500).end();
     }
     else {
-        console.log('public file sent: '+url);
         res.end(content, 'utf-8');
     }
   });
