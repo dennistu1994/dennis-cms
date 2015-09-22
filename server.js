@@ -11,9 +11,8 @@ var server = http.createServer(function(req, res) {
   //log(JSON.stringify(util.inspect(req)), "logs/req_" + Date.now() + ".json");
   var url = req.url;
   var req_url = req.url;
-  console.log("requesting: "+req_url+" a "+typeof req_url, req_url.startsWith("/index"));
   //if(!req_url.startsWith("/index")){
-  if(true){
+  if(req_url.indexOf("/index") !== 0){
     req_url = "/index" + req_url;
   }
   try {
