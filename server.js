@@ -13,7 +13,8 @@ var server = http.createServer(function(req, res) {
   var url = req.url;
   var req_url = req.url;
   console.log("requesting: "+req_url+" a "+typeof req_url);
-  if(!req_url.startsWith("/index")){
+  //if(!req_url.startsWith("/index")){
+  if(true){
     req_url = "/index" + req_url;
   }
   try {
