@@ -11,29 +11,29 @@ var Index = Init.init_modules();
 var server = http.createServer(function(req, res) {
   //log(JSON.stringify(util.inspect(req)), "logs/req_" + Date.now() + ".json");
   var url = req.url;
-  console.log("requesting: "+url);
   var req_url = req.url;
-  if(!(req_url.startsWith("/index"))){
+  console.log("requesting: "+req_url+" a "+typeof req_url);
+  if(!req_url.startsWith("/index")){
     req_url = "/index" + req_url;
   }
   try {
     var fstats = fs.lstatSync('public'+url);
     if(fstats.isFile()){
       //file exists, serve it
-      serve_file(url, res)
+      serve_file(url, res);
     } else {
       Index.route(req, res, req_url);
     }
   } catch (e){
     Index.route(req, res, req_url);
   }
-
 });
+
 server.listen(process.env.PORT || 8080);
-console.log("server listening port " + (process.env.PORT || 8080));
 
 function serve_file(url, res){
   var extname = path.extname(url);
+  var contentType;
   switch (extname) {
     case '.ico':
       contentType = "image/x-icon";
@@ -59,12 +59,12 @@ function serve_file(url, res){
     default:
       contentType = 'text/html';
   }
+  res.writeHead(200, { 'Content-Type': contentType });
   fs.readFile('public'+url, function(error, content) {
     if (error) {
       res.status(500).end();
     }
     else {
-        res.writeHead(200, { 'Content-Type': contentType });
         console.log('public file sent: '+url);
         res.end(content, 'utf-8');
     }
