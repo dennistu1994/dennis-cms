@@ -28,7 +28,7 @@ var server = http.createServer(function(req, res) {
   }
 
 });
-server.listen(process.env.OPENSHIFT_NODEJS_PORT || 8250, process.env.OPENSHIFT_NODEJS_IP);
+server.listen(process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8250, process.env.OPENSHIFT_NODEJS_IP);
 console.log("server listening port " + (process.env.OPENSHIFT_NODEJS_PORT || 8250));
 
 function serve_file(url, res){
