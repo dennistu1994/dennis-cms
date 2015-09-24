@@ -1,4 +1,9 @@
 console.log("Hello World!");
+requirejs.config({
+    baseUrl: '../',
+    paths: {
+    }
+});
 
 var renderer, scene, camera, cube;
 
@@ -6,7 +11,7 @@ var init = function(resolution) {
   renderer = new THREE.WebGLRenderer();
   renderer.setSize(resolution.width, resolution.height);
   document.body.appendChild(renderer.domElement);
-  var width = window.innerWidth - 50;
+  var width = window.innerWidth - 200;
   var height = width / resolution.aspect_ratio;
   console.log(width, height, resolution);
   $(renderer.domElement).width(width).height(width / resolution.aspect_ratio);
@@ -59,7 +64,7 @@ function render() {
 }
 
 $(function() {
-  require(['../js/settings/resolutions'], function(Resolutions) {
+  require(['js/settings/resolutions'], function(Resolutions) {
     init(Resolutions["1080p"]);
     prepare_scene(Resolutions["1080p"]);
     render();
