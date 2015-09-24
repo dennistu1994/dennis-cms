@@ -5,16 +5,23 @@ requirejs.config({
     }
 });
 
-var renderer, scene, camera, cube;
+var renderer, scene, p_camera, o_camera, cube;
 
 var init = function(resolution) {
   renderer = new THREE.WebGLRenderer();
   renderer.setSize(resolution.width, resolution.height);
-  document.body.appendChild(renderer.domElement);
-  var width = window.innerWidth - 200;
-  var height = width / resolution.aspect_ratio;
-  console.log(width, height, resolution);
-  $(renderer.domElement).width(width).height(width / resolution.aspect_ratio);
+  $(renderer.domElement).appendTo($('#canvas_container'));
+  var screen_aspect_ratio = window.innerWidth / window.innerHeight;
+  var width, height;
+  if(screen_aspect_ratio > resolution.aspect_ratio){
+    height = window.innerHeight;
+    width = height * resolution.aspect_ratio;
+  } else {
+    width = window.innerWidth;
+    height = width / resolution.aspect_ratio;
+  }
+  //$(renderer.domElement).width(width).height(width / resolution.aspect_ratio);
+  $(renderer.domElement).width(width).height(height);
 }
 
 function prepare_scene(resolution) {
@@ -22,19 +29,23 @@ function prepare_scene(resolution) {
 
   var width = resolution.width;
   var height = resolution.height;
-  camera = new THREE.OrthographicCamera(width / -2, width / 2, height / 2, height / -2, 1, 1000);
-  //camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
-  window.cmera = camera;
-  scene.add(camera);
+  //o_camera = new THREE.OrthographicCamera(width / -2, width / 2, height / 2, height / -2, 1, 1000);
+  p_camera = new THREE.PerspectiveCamera( 75, resolution.aspect_ratio, 0.1, 1000 );
+  window.p_camera = p_camera;
+  scene.add(p_camera);
 
-  var cubeg = new THREE.BoxGeometry(10, 10, 10);
+  //var light = new THREE.AmbientLight( 0x404040 ); // soft white light
+  //scene.add(light);
+
+  var cubeg = new THREE.BoxGeometry(1, 1, 1);
   var cubem = new THREE.MeshBasicMaterial({
-    color: 0x00ff00
+    color: 0x00ff00,
+    wireframe: true
   });
   cube = new THREE.Mesh(cubeg, cubem);
   scene.add(cube);
 
-  camera.position.z = 10;
+  p_camera.position.z = 5;
 }
 
 function load(path, callback) {
@@ -60,7 +71,8 @@ function load(path, callback) {
 
 function render() {
   requestAnimationFrame(render);
-  renderer.render(scene, camera);
+  renderer.render(scene, p_camera);
+  cube.rotation.y += 0.02;
 }
 
 $(function() {

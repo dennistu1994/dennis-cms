@@ -1,0 +1,13 @@
+#canvas_container {
+  width: 100%;
+  background-color: #333333;
+}
+
+#canvas_container canvas {
+  margin: 0 auto;
+  display: block;
+}
+
+body{
+  margin: 0;
+}
