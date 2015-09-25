@@ -10,14 +10,15 @@ var renderer, scene, p_camera, o_camera, cube;
 var init = function(resolution) {
   renderer = new THREE.WebGLRenderer();
   renderer.setSize(resolution.width, resolution.height);
-  $(renderer.domElement).appendTo($('#canvas_container'));
+  $(renderer.domElement).appendTo($('#container'));
   var screen_aspect_ratio = window.innerWidth / window.innerHeight;
   var width, height;
+  var nav_height = 60;
   if(screen_aspect_ratio > resolution.aspect_ratio){
-    height = window.innerHeight;
+    height = window.innerHeight - nav_height;
     width = height * resolution.aspect_ratio;
   } else {
-    width = window.innerWidth;
+    width = window.innerWidth - nav_height * resolution.aspect_ratio;
     height = width / resolution.aspect_ratio;
   }
   //$(renderer.domElement).width(width).height(width / resolution.aspect_ratio);
@@ -45,7 +46,7 @@ function prepare_scene(resolution) {
   cube = new THREE.Mesh(cubeg, cubem);
   scene.add(cube);
 
-  p_camera.position.z = 5;
+  p_camera.position.z = 1.5;
 }
 
 function load(path, callback) {
