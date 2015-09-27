@@ -1,18 +1,24 @@
 console.log("Hello World!");
+requirejs.config({
+    baseUrl: '../',
+    paths: {
+    }
+});
 
 var renderer, scene, p_camera, o_camera, cube;
 
 var init = function(resolution) {
   renderer = new THREE.WebGLRenderer();
   renderer.setSize(resolution.width, resolution.height);
-  $(renderer.domElement).appendTo($('#canvas_container'));
+  $(renderer.domElement).appendTo($('#container'));
   var screen_aspect_ratio = window.innerWidth / window.innerHeight;
   var width, height;
+  var nav_height = 60;
   if(screen_aspect_ratio > resolution.aspect_ratio){
-    height = window.innerHeight;
+    height = window.innerHeight - nav_height;
     width = height * resolution.aspect_ratio;
   } else {
-    width = window.innerWidth;
+    width = window.innerWidth - nav_height * resolution.aspect_ratio;
     height = width / resolution.aspect_ratio;
   }
   //$(renderer.domElement).width(width).height(width / resolution.aspect_ratio);

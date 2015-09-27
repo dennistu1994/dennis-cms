@@ -1,13 +1,29 @@
-#canvas_container {
+#container {
+  background-color: black;
   width: 100%;
-  background-color: #333333;
+  height: 100%;
 }
-
-#canvas_container canvas {
-  margin: 0 auto;
+#container canvas {
+  margin: auto;
   display: block;
 }
-
-body{
+html, body {
+  height: 100%;
   margin: 0;
+}
+#top_nav {
+  background-color:#008a00;
+  height: 60px;
+  color: white;
+  font-family: arial, sans-serif;
+  width: 100%;
+}
+#top_nav .menu_item{
+  display: inline-block;
+  height: 60px;
+  line-height: 60px;
+  padding: 0 15px;
+}
+.shadow_bottom{
+
 }
