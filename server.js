@@ -30,6 +30,8 @@ var server = http.createServer(function(req, res) {
 
 server.listen(process.env.PORT || 8000, function(){
   console.log('listening port',process.env.PORT || 8000);
+  Init.init_lounge(server);
+
 });
 
 function serve_file(url, res){
