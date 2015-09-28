@@ -13,8 +13,10 @@ Init.init_modules = function(){
 
 Init.init_lounge = function(server){
   var lounge = new Instance();
-  SocketHelper.init();
+  SocketHelper.init(server);
   SocketHelper.set_connection_listener(lounge.on_connection.bind(lounge));
+  SocketHelper.set_disconnection_listener(lounge.on_disconnection.bind(lounge));
+  lounge.start();
 }
 
 module.exports = Init;
