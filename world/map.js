@@ -5,7 +5,6 @@ function Map(){
 }
 
 Map.prototype.update = function(){
-  console.log("map update");
 };
 
 Map.prototype.add_client = function(client){
