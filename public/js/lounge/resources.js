@@ -30,5 +30,6 @@ define(function(){
   Spritesheet.prototype.constructor = Spritesheet;
 
   Resources.test64 = new Image('res/test64.png');
+  Resources.grassy_dirt64 = new Image('res/grassy_dirt64.png');
   return Resources;
 });

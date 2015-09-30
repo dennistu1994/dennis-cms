@@ -18,18 +18,14 @@ define(function(){
       width = window.innerWidth - nav_height * resolution.aspect_ratio;
       height = width / resolution.aspect_ratio;
     }
-    //$(renderer.domElement).width(width).height(width / resolution.aspect_ratio);
     $(this.renderer.domElement).width(width).height(height);
 
     this.scene = new THREE.Scene();
 
-    //o_camera = new THREE.OrthographicCamera(width / -2, width / 2, height / 2, height / -2, 1, 1000);
     this.p_camera = new THREE.PerspectiveCamera( 90, resolution.aspect_ratio, 0.1, 1000 );
     window.p_camera = this.p_camera;
     this.scene.add(this.p_camera);
 
-    //var light = new THREE.AmbientLight( 0x404040 ); // soft white light
-    //scene.add(light);
     map.units.forEach(function(unit){
       this.scene.add(unit.mesh);
     }.bind(this));

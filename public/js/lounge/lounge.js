@@ -3,20 +3,17 @@ $(function(){
     'socket.io',
     'lounge/maps',
     'lounge/loader',
-    'lounge/resources',
     'lib/three_helper',
-    'settings/resolutions',
-    'lounge/units'], function(
+    'settings/resolutions'
+], function(
     io,
     Maps,
     Loader,
-    Resources,
     ThreeHelper,
-    Resolutions,
-    Units
+    Resolutions
   ){
     Loader.load_map(Maps.test, function(context){
-      Maps.test.units.push(new Units.Sprite(1920, 1080, Resources.test64));
+      Maps.test.init();
       ThreeHelper.init_map(Resolutions['720p'], Maps.test);
       ThreeHelper.render();
     });
