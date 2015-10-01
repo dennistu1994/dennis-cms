@@ -2,6 +2,14 @@ define(['lounge/resources'], function(Resources){
   var Units = {};
 
   function Unit(){
+    this.velocity = new THREE.Vector3(0, 0, 0);
+    this.dynamic = false;
+  }
+
+  Unit.prototype.update = function(delta){
+    if(this.dynamic){
+      this.mesh.position.add(this.velocity.clone().multiplyScalar(delta));
+    }
   }
 
   function GradientSprite(width, height, color_a, color_b){
@@ -20,10 +28,12 @@ define(['lounge/resources'], function(Resources){
     this.mesh = new THREE.Mesh(geometry, material);
     window.mesh = this.mesh;
   }
-  GradientSprite.prototype = new Unit();
+  GradientSprite.prototype = Object.create(Unit.prototype);
   GradientSprite.prototype.constructor = GradientSprite;
 
   function Sprite(width, height, image, repeat_x, repeat_y, transparent){
+    this.width = width;
+    this.height = height;
     Unit.call(this);
     var geometry = new THREE.PlaneGeometry(width, height);
     var texture = new THREE.Texture(image);
@@ -39,6 +49,7 @@ define(['lounge/resources'], function(Resources){
 
     var material = new THREE.MeshBasicMaterial({
       map: texture
+      //wireframe: true
     });
 
     if(transparent){
@@ -48,8 +59,14 @@ define(['lounge/resources'], function(Resources){
     texture.needsUpdate = true;
     this.mesh = new THREE.Mesh(geometry, material);
   }
-  Sprite.prototype = new Unit();
+  Sprite.prototype = Object.create(Unit.prototype);
   Sprite.prototype.constructor = Sprite;
+
+  function SpriteAnimation(spritesheet, width, height){
+    this.width = width || (spritesheet.data.width / spritesheet.num_x);
+    this.height = height || (spritesheet.data.height / spritesheet.num_y);
+
+  }
 
   Units.Sprite = Sprite;
   Units.GradientSprite = GradientSprite;

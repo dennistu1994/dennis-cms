@@ -17,7 +17,7 @@ define(function(){
   function Image(path){
     Resource.call(this, path);
   }
-  Image.prototype = new Resource();
+  Image.prototype = Object.create(Resource.prototype);
   Image.prototype.constructor = Image;
 
   function Spritesheet(path, num_x, num_y){
@@ -26,10 +26,17 @@ define(function(){
     this.num_y = num_y;
     this.type = Resources.SPRITESHEET;
   }
-  Spritesheet.prototype = new Resource();
+  Spritesheet.prototype = Object.create(Resource.prototype);
   Spritesheet.prototype.constructor = Spritesheet;
 
+  //=========Images=========
   Resources.test64 = new Image('res/test64.png');
   Resources.grassy_dirt64 = new Image('res/grassy_dirt64.png');
+  Resources.cloud0_256 = new Image('res/cloud0_256.png');
+  //=========Images=========
+
+  //=========Spritesheets=========
+  Resources.ss_abcd = new Spritesheet('res/ss_abcd.png', 2, 2);
+  //=========Spritesheets=========
   return Resources;
 });
