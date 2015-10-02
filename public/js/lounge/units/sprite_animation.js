@@ -57,7 +57,8 @@ define(['lounge/units/units'], function(Units){
   SpriteAnimation.prototype = Object.create(Units.Unit.prototype);
   SpriteAnimation.prototype.constructor = SpriteAnimation;
   SpriteAnimation.prototype.set_frame = function(frame){
-    this.texture.offset.set(frame % this.num_x * this.div_x, Math.floor(frame/this.num_x+1)*this.div_y);
+    this.texture.offset.set(frame % this.num_x * this.div_x, 1 - Math.floor(frame/this.num_x+1)*this.div_y);
+    //console.log(this.texture.offset);
   };
 
   SpriteAnimation.prototype.add_animation = function(name, frames){

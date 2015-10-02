@@ -19,7 +19,7 @@ define(['lounge/resources', 'lounge/units/units', 'lounge/units/environment', 'l
 
         var ss_1_16 = new SpriteAnimation(Resources.ss_1_16);
         this.units.push(ss_1_16);
-        ss_1_16.set_frame(7);
+        ss_1_16.set_frame(0);
         ss_1_16.add_animation('all', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
         ss_1_16.play_animation('all', 2, 0, true);
       }.bind(map);
