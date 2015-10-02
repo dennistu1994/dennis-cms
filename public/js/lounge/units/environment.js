@@ -1,4 +1,4 @@
-define(['lounge/units'], function(Units){
+define(['lounge/units/units'], function(Units){
   var Environment ={};
   function Cloud(width, height, image, altitude, map_width){
     Units.Sprite.call(this, width, height, image, false, false, true);
@@ -6,7 +6,6 @@ define(['lounge/units'], function(Units){
     this.x_limit = map_width/2 + this.width/2;
     this.velocity.x = (Math.random()+3) * (Math.random()>0.5?1:-1) ;
     this.mesh.position.x = (Math.random() - 0.5) * map_width;
-    console.log(this.mesh.anchor);
     this.mesh.position.y = altitude;
     this.update = function(delta){
       this.mesh.position.add(this.velocity.clone().multiplyScalar(delta));

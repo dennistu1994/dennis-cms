@@ -62,12 +62,7 @@ define(['lounge/resources'], function(Resources){
   Sprite.prototype = Object.create(Unit.prototype);
   Sprite.prototype.constructor = Sprite;
 
-  function SpriteAnimation(spritesheet, width, height){
-    this.width = width || (spritesheet.data.width / spritesheet.num_x);
-    this.height = height || (spritesheet.data.height / spritesheet.num_y);
-
-  }
-
+  Units.Unit = Unit;
   Units.Sprite = Sprite;
   Units.GradientSprite = GradientSprite;
   return Units;

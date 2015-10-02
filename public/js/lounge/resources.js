@@ -37,6 +37,8 @@ define(function(){
 
   //=========Spritesheets=========
   Resources.ss_abcd = new Spritesheet('res/ss_abcd.png', 2, 2);
+  //Resources.ss_bandit_0 = new Spritesheet('res/ss_bandit_0.png', 10, 7);
+  Resources.ss_1_16 = new Spritesheet('res/ss_1_16.png', 4, 4);
   //=========Spritesheets=========
   return Resources;
 });
