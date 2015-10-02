@@ -17,7 +17,6 @@ define(['lounge/resources'],function(Resources){
         }
       }
     }
-    console.log(map.resource_ids);
     map.resource_ids.forEach(function(resource_id){
       switch(Resources[resource_id].type){
         default:

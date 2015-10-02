@@ -5,7 +5,6 @@ define(function(){
 
   ThreeHelper.init_map = function(resolution, map) {
     this.renderer = new THREE.WebGLRenderer();
-    console.log(resolution);
     this.renderer.setSize(resolution.width, resolution.height);
     $(this.renderer.domElement).appendTo($('#container'));
     var screen_aspect_ratio = window.innerWidth / window.innerHeight;

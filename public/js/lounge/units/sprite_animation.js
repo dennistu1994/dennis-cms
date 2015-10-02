@@ -30,7 +30,6 @@ define(['lounge/units/units'], function(Units){
   };
 
   function SpriteAnimation(spritesheet){
-    console.log(spritesheet);
     this.width = spritesheet.data.width / spritesheet.num_x;
     this.height = spritesheet.data.height / spritesheet.num_y;
     this.num_x = spritesheet.num_x;
