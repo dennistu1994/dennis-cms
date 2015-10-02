@@ -2,7 +2,7 @@ define(['lounge/resources', 'lounge/units/units', 'lounge/units/environment', 'l
   var Maps = {
     cache: {},
     test: (function(){
-      var map = new Map('test', ['grassy_dirt64', 'cloud0_256', 'ss_1_16']);
+      var map = new Map('test', ['grassy_dirt64', 'cloud0_256', 'ss_bandit_0', 'ss_1_16']);
       map.width = 1280;
       map.height = 720;
       map.init = function(){
@@ -19,9 +19,17 @@ define(['lounge/resources', 'lounge/units/units', 'lounge/units/environment', 'l
 
         var ss_1_16 = new SpriteAnimation(Resources.ss_1_16);
         this.units.push(ss_1_16);
+        ss_1_16.set_position(100, 100);
         ss_1_16.set_frame(0);
         ss_1_16.add_animation('all', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
         ss_1_16.play_animation('all', 2, 0, true);
+
+        var bandit = new SpriteAnimation(Resources.ss_bandit_0);
+        this.units.push(bandit);
+        bandit.mesh.scale.x = bandit.mesh.scale.y = 2;
+        bandit.add_animation('idle', [0, 1, 2, 3, 2, 1]);
+        bandit.play_animation('idle', 10, 0, true);
+
       }.bind(map);
 
       return map;

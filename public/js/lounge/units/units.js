@@ -12,6 +12,11 @@ define(['lounge/resources'], function(Resources){
     }
   }
 
+  Unit.prototype.set_position = function(x, y){
+    this.mesh.position.x = x;
+    this.mesh.position.y = y;
+  };
+
   function GradientSprite(width, height, color_a, color_b){
     Unit.call(this);
     var geometry = new THREE.PlaneGeometry(width, height);
