@@ -1,10 +1,11 @@
 function Map(){
-  this.clients = {};
+  this.clients = [];
   this.bounds = {width: 300, height: 300};
   this.num_clients = 0;
 }
 
 Map.prototype.update = function(){
+
 };
 
 Map.prototype.add_client = function(client){

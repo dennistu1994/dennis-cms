@@ -5,15 +5,19 @@ $(function(){
     'lounge/loader',
     'lib/three_helper',
     'settings/resolutions',
-    'lib/gameloop'
+    'lib/gameloop',
+    'lib/socket_helper'
 ], function(
     io,
     Maps,
     Loader,
     ThreeHelper,
     Resolutions,
-    Gameloop
+    Gameloop,
+    SocketHelper
   ){
+    //connect
+    SocketHelper.init();
     Loader.load_map(Maps.test, function(context){
       Maps.test.init();
       ThreeHelper.init_map(Resolutions['720p'], Maps.test);

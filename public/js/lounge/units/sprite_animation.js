@@ -31,7 +31,7 @@ define(['lounge/units/units', 'sat'], function(Units, SAT){
     }
   };
 
-  function SpriteAnimation(spritesheet){
+  function SpriteAnimation(spritesheet, add_default_collider){
     this.width = spritesheet.data.width / spritesheet.num_x;
     this.height = spritesheet.data.height / spritesheet.num_y;
     Units.Unit.call(this, this.width, this.height);
@@ -55,7 +55,9 @@ define(['lounge/units/units', 'sat'], function(Units, SAT){
     this.animations = {};
     this.current_animation = null;
     if(add_default_collider){
-      this.collider = new SAT.Box(new SAT.Vector(this.mesh.position.x - this.width/2, this.mesh.position.y - this.height/2), this.width, this.height).toPolygon();
+      this.collider = new SAT.Box(new SAT.Vector(this.mesh.position.x - this.half_width, this.mesh.position.y - this.half_height), this.width, this.height).toPolygon();
+      this.collider_offset_x = this.half_width;
+      this.collider_offset_y = this.half_height;
     }
   }
 

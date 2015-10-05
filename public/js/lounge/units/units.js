@@ -10,6 +10,10 @@ define(['lounge/resources', 'sat'], function(Resources, SAT){
     this.half_height = height / 2;
   }
 
+  Unit.prototype.get_state = function(){
+    return this.collider.pos.x +","+ this.collider.pos.y+","+this.velocity.x+","+this.velocity.y;
+  }
+
   Unit.prototype.update = function(delta){
     if(this.dynamic){
       this.mesh.position.add(this.velocity.clone().multiplyScalar(delta));
@@ -19,12 +23,14 @@ define(['lounge/resources', 'sat'], function(Resources, SAT){
   Unit.prototype.set_position = function(x, y){
     this.mesh.position.x = x;
     this.mesh.position.y = y;
-    this.collider.pos.x =  x - this.half_width;
-    this.collider.pos.y =  y - this.half_height;
+    this.collider.pos.x =  x - this.collider_offset_x;
+    this.collider.pos.y =  y - this.collider_offset_y;
   };
 
-  Unit.prototype.set_collider = function(collider){
+  Unit.prototype.set_collider = function(collider, offset_x, offset_y){
     this.collider = collider;
+    this.collider_offset_x = offset_x;
+    this.collider_offset_y = offset_y;
   };
 
   function GradientSprite(width, height, color_a, color_b){
@@ -72,7 +78,9 @@ define(['lounge/resources', 'sat'], function(Resources, SAT){
     texture.needsUpdate = true;
     this.mesh = new THREE.Mesh(geometry, material);
     if(add_default_collider){
-      this.collider = new SAT.Box(new SAT.Vector(this.mesh.position.x - this.width/2, this.mesh.position.y - this.height/2), this.width, this.height).toPolygon();
+      this.collider = new SAT.Box(new SAT.Vector(this.mesh.position.x - this.half_width, this.mesh.position.y - this.half_height), this.width, this.height).toPolygon();
+      this.collider_offset_x = this.half_width;
+      this.collider_offset_y = this.half_height;
     }
   }
   Sprite.prototype = Object.create(Unit.prototype);
