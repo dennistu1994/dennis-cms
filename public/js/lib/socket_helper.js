@@ -1,6 +1,5 @@
 define(['socket.io'], function(io){
   var SocketHelper = {
-    client_unit: null,
     conn: null
   };
 
@@ -13,8 +12,8 @@ define(['socket.io'], function(io){
     console.log(SocketHelper.conn);
   };
 
-  SocketHelper.send_player_state = function(){
-    SocketHelper.conn.emit('u', SocketHelper.client_unit.get_state());
+  SocketHelper.send_input_state = function(){
+    SocketHelper.conn.emit('u', SocketHelper.get_input_state());
   };
 
   return SocketHelper;
