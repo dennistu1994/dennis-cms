@@ -1,7 +1,11 @@
 module.exports = function(grunt) {
 
   grunt.initConfig({
+    jasmine: {
+      default: {
 
+      }
+    }
   });
 
   grunt.loadNpmTasks('grunt-contrib-jasmine');
