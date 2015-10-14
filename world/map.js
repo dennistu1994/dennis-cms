@@ -1,7 +1,8 @@
-function Map(){
+function Map(width, height){
   this.clients = [];
-  this.bounds = {width: 300, height: 300};
+  this.bounds = {width: width, height: height};
   this.num_clients = 0;
+  this.grounds = [];
 }
 
 Map.prototype.update = function(){
