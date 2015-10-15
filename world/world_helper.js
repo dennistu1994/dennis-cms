@@ -24,10 +24,9 @@ WorldHelper.make_instance = function(json){
       collider_points.push(new SAT.Vector(g.c.p[i], g.c.p[i+1]));
     }
     var ground = new SAT.Polygon(new SAT.Vector(g.c.x, g.c.y), collider_points);
-    console.log(ground);
     map.grounds.push(ground);
   });
-  return new Instance(map);
+  return new Instance(json.id, map);
 };
 
 module.exports=WorldHelper;

@@ -5,9 +5,11 @@ var fps = 1;
 var Config = require('./config')(fps);
 var SocketHelper = require('./socket_helper');
 
-function Instance(map){
+function Instance(id, map){
+  this.id = id;
   this.map = map || new Map();
   this.loop_handle = null;
+  this.server = null;
 };
 
 function Client(socket){
@@ -17,7 +19,7 @@ function Client(socket){
 
 Instance.prototype.update = function(){
   this.map.update();
-  SocketHelper.emit();
+  this.server.emit('u');
 };
 
 Instance.prototype.on_connection = function(socket){
@@ -27,7 +29,7 @@ Instance.prototype.on_connection = function(socket){
   console.log('client '+socket.id+' connected, total '+this.map.num_clients+' clients');
 };
 
-Instance.prototype.on_disconnection = function(socket){
+Instance.prototype.on_disconnect = function(socket){
   this.map.remove_client(socket.id);
   console.log('client disconnected, total '+this.map.num_clients+' clients');
 };

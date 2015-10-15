@@ -42,11 +42,11 @@ define(['lounge/resources', 'lounge/units/units', 'lounge/units/environment', 'l
     this.width = 0;
     this.height = 0;
     this.units=[];
+    this.sync_counter = 0;
 
     //=========temp variables=========
     this.t_num_units = 0;
     //=========temp variables=========
-
     this.id=id;
     this.resource_ids = resource_ids;
     this.loaded = false;
@@ -61,9 +61,10 @@ define(['lounge/resources', 'lounge/units/units', 'lounge/units/environment', 'l
     }
     if(this.sync_counter === 0){
       //sync
-      SocketHelper.send_player_state();
+      console.log('sent input state');
+      SocketHelper.send_input_state();
     }
-    this.sync_counter = (this.sync_counter+1)%40;
+    this.sync_counter = (this.sync_counter+1)%2;
     //console.log(SAT.testPolygonPolygon(this.ground.collider, this.b2.collider));
   }
 

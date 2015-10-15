@@ -8,11 +8,12 @@ define(['socket.io'], function(io){
   };
 
   SocketHelper.init = function(map_id){
-    SocketHelper.conn = io("/"+map_id);
+    SocketHelper.conn = io(window.location.host+map_id);
   };
 
   SocketHelper.send_input_state = function(){
-    SocketHelper.conn.emit('u', SocketHelper.get_input_state());
+    SocketHelper.conn.emit('u', 'test');
+    //SocketHelper.conn.emit('u', SocketHelper.get_input_state());
   };
 
   SocketHelper.connect = function(map){
