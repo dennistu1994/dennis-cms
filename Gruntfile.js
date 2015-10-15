@@ -3,7 +3,7 @@ module.exports = function(grunt) {
   grunt.initConfig({
     jasmine: {
       default: {
-        
+
       }
     }
   });
